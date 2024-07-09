@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= article.title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Read Article Page</h1>
+  </header>
+  <main>
+    <h2><%= article.title %></h2>
+    <p>Published: <%= article.updated_at %></p>
+    <p>Views: <%= article.views %></p>
+    <p>Likes: <%= article.likes %></p>
+    <div>
+      <p><%= article.content %></p>
+    </div>
+    <button onclick="window.location.href='/reader/article/<%= article.id %>/like'">Like</button>
+    <section>
+      <h3>Comments</h3>
+      <ul>
+        <% comments.forEach(comment => { %>
+          <li>
+            <p><strong><%= comment.commenter_name %>:</strong> <%= comment.comment %></p>
+            <p>Posted on: <%= comment.created_at %></p>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+    <section>
+      <h3>Add a Comment</h3>
+      <form action="/reader/article/<%= article.id %>/comment" method="post">
+        <label for="commenter_name">Name:</label>
+        <input type="text" id="commenter_name" name="commenter_name" required>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" required></textarea>
+        <button type="submit">Submit Comment</button>
+      </form>
+    </section>
+    <nav>
+      <a href="/reader">Back to Reader Home</a>
+    </nav>
+  </main>
+</body>
+</html>

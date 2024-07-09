@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reader Home</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Reader Home Page</h1>
+  </header>
+  <main>
+    <h2>Blog Title: <%= blog_title %></h2>
+    <h3>Author: <%= author_name %></h3>
+    <section>
+      <h2>Published Articles</h2>
+      <ul>
+        <% articles.forEach(article => { %>
+          <li>
+            <h3><%= article.title %></h3>
+            <p>Published: <%= article.updated_at %></p>
+            <a href="/reader/article/<%= article.id %>">Read Article</a>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

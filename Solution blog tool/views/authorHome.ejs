@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Author Home</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Author Home Page</h1>
+  </header>
+  <main>
+    <h2>Blog Title: <%= blog_title %></h2>
+    <h3>Author: <%= author_name %></h3>
+    <nav>
+      <a href="/author/settings">Settings</a>
+      <form action="/author/create" method="post" style="display:inline;">
+        <button type="submit">Create new draft</button>
+      </form>
+    </nav>
+    <section>
+      <h2>Published Articles</h2>
+      <ul>
+        <% publishedArticles.forEach(article => { %>
+          <li>
+            <h3><%= article.title %></h3>
+            <p>Created: <%= article.created_at %></p>
+            <p>Published: <%= article.updated_at %></p>
+            <p>Last Modified: <%= article.updated_at %></p>
+            <p>Views: <%= article.views %></p>
+            <p>Likes: <%= article.likes %></p>
+            <a href="/reader/article/<%= article.id %>">Read Article</a>
+            <form action="/author/delete/<%= article.id %>" method="post">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+    <section>
+      <h2>Draft Articles</h2>
+      <ul>
+        <% draftArticles.forEach(article => { %>
+          <li>
+            <h3><%= article.title %></h3>
+            <p>Created: <%= article.created_at %></p>
+            <p>Last Modified: <%= article.updated_at %></p>
+            <a href="/author/edit/<%= article.id %>">Edit Article</a>
+            <form action="/author/publish/<%= article.id %>" method="post">
+              <button type="submit">Publish</button>
+            </form>
+            <form action="/author/delete/<%= article.id %>" method="post">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

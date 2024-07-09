@@ -1,0 +1,6 @@
+{
+  "scripts": {
+  "build-db": "node buildDb.js",
+  "start": "node index.js"
+}
+}

@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build-db": "node buildDb.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express-session": "^1.18.0"
+  }
+}
